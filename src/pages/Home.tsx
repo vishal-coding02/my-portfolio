@@ -150,65 +150,6 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
             {/* Floating Elements (Decoration) */}
             <div className="absolute -top-4 -right-4 w-24 h-24 rounded-full bg-linear-to-r from-cyan-500 to-blue-500 opacity-20 animate-float blur-xl"></div>
             <div className="absolute -bottom-4 -left-4 w-32 h-32 rounded-full bg-linear-to-r from-purple-500 to-pink-500 opacity-20 animate-float blur-xl animation-delay-2000"></div>
-
-            {/* Stats Cards */}
-            <div className="mt-12 grid grid-cols-2 gap-4">
-              <div
-                className={`p-4 rounded-lg ${
-                  darkMode ? "bg-gray-800" : "bg-gray-50"
-                }`}
-              >
-                <div className="flex items-center space-x-3">
-                  <FiServer
-                    className={darkMode ? "text-cyan-400" : "text-blue-500"}
-                  />
-                  <div>
-                    <p
-                      className={`text-sm ${
-                        darkMode ? "text-gray-400" : "text-gray-500"
-                      }`}
-                    >
-                      Backend
-                    </p>
-                    <p
-                      className={`text-xl font-bold ${
-                        darkMode ? "text-white" : "text-gray-900"
-                      }`}
-                    >
-                      Node.js
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                className={`p-4 rounded-lg ${
-                  darkMode ? "bg-gray-800" : "bg-gray-50"
-                }`}
-              >
-                <div className="flex items-center space-x-3">
-                  <FiDatabase
-                    className={darkMode ? "text-green-400" : "text-green-500"}
-                  />
-                  <div>
-                    <p
-                      className={`text-sm ${
-                        darkMode ? "text-gray-400" : "text-gray-500"
-                      }`}
-                    >
-                      Database
-                    </p>
-                    <p
-                      className={`text-xl font-bold ${
-                        darkMode ? "text-white" : "text-gray-900"
-                      }`}
-                    >
-                      MongoDB
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

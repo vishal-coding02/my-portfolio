@@ -4,10 +4,7 @@ import {
   FiGithub,
   FiCode,
   FiStar,
-  // FiServer,
   FiDatabase,
-  FiSmartphone,
-  FiUsers,
 } from "react-icons/fi";
 import {
   SiReact,
@@ -15,14 +12,12 @@ import {
   SiMongodb,
   SiTailwindcss,
   SiTypescript,
-  // SiRedux,
   SiExpress,
-  // SiFirebase,
-  // SiNextdotjs,
-  // SiVercel,
   SiHtml5,
   SiCss3,
   SiJavascript,
+  SiRedux,
+  SiSocketdotio,
 } from "react-icons/si";
 
 interface ProjectsProps {
@@ -44,7 +39,7 @@ interface Project {
 
 const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
   const projects: Project[] = [
-    // MAIN PROJECT
+    // MAIN PROJECT 1 - Day To Day Service Provider
     {
       id: 1,
       title: "Day To Day Service Provider",
@@ -75,9 +70,42 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
       category: "main",
     },
 
-    // MINI PROJECT 1
+    // MAIN PROJECT 2 - Chat App (No problem/solution)
     {
       id: 2,
+      title: "Chat Application",
+      description:
+        "A feature-rich real-time messaging platform with one-to-one chat, online status, typing indicators, and message requests.",
+      problem: "",
+      solution: "",
+      techStack: [
+        { name: "React", icon: <SiReact />, color: "text-cyan-400" },
+        { name: "Node.js", icon: <SiNodedotjs />, color: "text-green-500" },
+        { name: "MongoDB", icon: <SiMongodb />, color: "text-green-600" },
+        { name: "Express", icon: <SiExpress />, color: "text-gray-600" },
+        { name: "TypeScript", icon: <SiTypescript />, color: "text-blue-600" },
+        { name: "Redux", icon: <SiRedux />, color: "text-purple-600" },
+        { name: "WebSocket", icon: <SiSocketdotio />, color: "text-gray-700" },
+        { name: "Tailwind", icon: <SiTailwindcss />, color: "text-teal-400" },
+      ],
+      features: [
+        "User Authentication with secure login/signup and email verification",
+        "One-to-One Chat with real-time message delivery",
+        "Online/Offline Status indicators for users",
+        "Typing Indicator showing when someone is typing",
+        "Create Chat functionality to start new conversations",
+        "Message Requests for privacy control (accept/decline messages)",
+        "Basic Profile Info with avatars and status updates",
+        "Fully Responsive design for mobile, tablet, and desktop",
+      ],
+      liveLink: "https://chat-app-frontend-mauve-pi.vercel.app/",
+      githubLink: "https://github.com/vishal-coding02/chatApp-frontend",
+      category: "main",
+    },
+
+    // MINI PROJECT 1 - Weather Dashboard
+    {
+      id: 3,
       title: "Weather Dashboard",
       description:
         "Real-time weather application with location-based forecasts",
@@ -97,7 +125,7 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
       ],
       features: [
         "Real-time weather data for any city",
-        "7-day forecast display",
+        "5-day forecast display",
         "Temperature unit conversion (Celsius/Fahrenheit)",
         "Location search with auto-complete",
         "Responsive design for all devices",
@@ -108,9 +136,9 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
       category: "mini",
     },
 
-    // MINI PROJECT 2
+    // MINI PROJECT 2 - Alarm Clock App
     {
-      id: 3,
+      id: 4,
       title: "Alarm Clock App",
       description:
         "A simple digital clock application with alarm functionality built using pure JavaScript.",
@@ -126,11 +154,6 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
         },
         { name: "HTML", icon: <SiHtml5 />, color: "text-orange-500" },
         { name: "CSS", icon: <SiCss3 />, color: "text-blue-500" },
-        {
-          name: "JavaScript",
-          icon: <SiJavascript />,
-          color: "text-yellow-400",
-        },
       ],
       features: [
         "Real-time digital clock display",
@@ -167,28 +190,28 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
           : "bg-white hover:bg-gray-50 shadow-md hover:shadow-lg"
       }`}
     >
-      {/* Project Header */}
-      <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-          <div>
+      {/* Project Header - LARGER TEXT */}
+      <div className="p-8 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
+          <div className="flex-1">
             <h3
-              className={`text-xl font-bold mb-2 ${
+              className={`text-2xl font-bold mb-3 ${
                 darkMode ? "text-white" : "text-gray-900"
               }`}
             >
               {project.title}
             </h3>
             <p
-              className={`text-sm ${
-                darkMode ? "text-gray-400" : "text-gray-600"
+              className={`text-base leading-relaxed ${
+                darkMode ? "text-gray-300" : "text-gray-700"
               }`}
             >
               {project.description}
             </p>
           </div>
           <span
-            className={`px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(
-              project.category
+            className={`px-4 py-1.5 rounded-full text-sm font-medium ${getCategoryColor(
+              project.category,
             )}`}
           >
             {project.category.charAt(0).toUpperCase() +
@@ -196,52 +219,65 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
           </span>
         </div>
 
-        {/* Problem & Solution */}
-        {project.category === "main" && (
-          <div className="space-y-2 mb-4">
+        {/* Problem & Solution - Only for Day To Day project - LARGER TEXT */}
+        {project.id === 1 && (
+          <div className="space-y-4 mb-6">
             <div>
               <h4
-                className={`text-xs font-semibold mb-1 ${
-                  darkMode ? "text-gray-300" : "text-gray-700"
+                className={`text-base font-semibold mb-2 ${
+                  darkMode ? "text-gray-200" : "text-gray-800"
                 }`}
               >
-                <span className="text-red-500 ">Problem:</span> {project.problem}
+                <span className="text-red-500">Problem:</span>
               </h4>
+              <p
+                className={`text-sm leading-relaxed ${
+                  darkMode ? "text-gray-400" : "text-gray-700"
+                }`}
+              >
+                {project.problem}
+              </p>
             </div>
             <div>
               <h4
-                className={`text-xs font-semibold mb-1 ${
-                  darkMode ? "text-gray-300" : "text-gray-700"
+                className={`text-base font-semibold mb-2 ${
+                  darkMode ? "text-gray-200" : "text-gray-800"
                 }`}
               >
-                <span className="text-green-500">Solution:</span>{" "}
-                {project.solution}
+                <span className="text-green-500">Solution:</span>
               </h4>
+              <p
+                className={`text-sm leading-relaxed ${
+                  darkMode ? "text-gray-400" : "text-gray-700"
+                }`}
+              >
+                {project.solution}
+              </p>
             </div>
           </div>
         )}
 
-        {/* Tech Stack */}
-        <div className="mb-4">
+        {/* Tech Stack - LARGER TEXT */}
+        <div className="mb-6">
           <h4
-            className={`text-sm font-semibold mb-2 flex items-center gap-1 ${
-              darkMode ? "text-gray-300" : "text-gray-700"
+            className={`text-base font-semibold mb-3 flex items-center gap-2 ${
+              darkMode ? "text-gray-200" : "text-gray-800"
             }`}
           >
-            <FiCode size={14} />
+            <FiCode size={18} />
             Tech Stack
           </h4>
-          <div className="flex flex-wrap gap-1">
+          <div className="flex flex-wrap gap-2">
             {project.techStack.map((tech) => (
               <div
                 key={tech.name}
-                className={`flex items-center gap-1 px-2 py-1 rounded-md ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md ${
                   darkMode ? "bg-gray-900" : "bg-gray-100"
                 }`}
               >
-                <span className={`text-sm ${tech.color}`}>{tech.icon}</span>
+                <span className={`text-base ${tech.color}`}>{tech.icon}</span>
                 <span
-                  className={`text-xs font-medium ${
+                  className={`text-sm font-medium ${
                     darkMode ? "text-gray-300" : "text-gray-700"
                   }`}
                 >
@@ -253,31 +289,31 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
         </div>
       </div>
 
-      {/* Features & Buttons */}
-      <div className="p-6">
+      {/* Features & Buttons - LARGER TEXT */}
+      <div className="p-8">
         {/* Features List */}
-        <div className="mb-4">
+        <div className="mb-6">
           <h4
-            className={`text-sm font-semibold mb-2 flex items-center gap-1 ${
-              darkMode ? "text-gray-300" : "text-gray-700"
+            className={`text-base font-semibold mb-3 flex items-center gap-2 ${
+              darkMode ? "text-gray-200" : "text-gray-800"
             }`}
           >
-            <FiStar size={14} />
+            <FiStar size={18} />
             Key Features
           </h4>
-          <ul className="space-y-1">
+          <ul className="space-y-2">
             {project.features.map((feature, index) => (
-              <li key={index} className="flex items-start gap-1">
+              <li key={index} className="flex items-start gap-2">
                 <span
-                  className={`mt-0.5 ${
+                  className={`mt-1 ${
                     darkMode ? "text-green-400" : "text-green-500"
                   }`}
                 >
-                  <FiStar size={12} />
+                  <FiStar size={14} />
                 </span>
                 <span
-                  className={`text-xs ${
-                    darkMode ? "text-gray-400" : "text-gray-600"
+                  className={`text-sm leading-relaxed ${
+                    darkMode ? "text-gray-400" : "text-gray-700"
                   }`}
                 >
                   {feature}
@@ -337,18 +373,20 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
   );
 
   // Separate main and mini projects
-  const mainProject = projects.find((project) => project.category === "main");
+  const mainProjects = projects.filter(
+    (project) => project.category === "main",
+  );
   const miniProjects = projects.filter(
-    (project) => project.category === "mini"
+    (project) => project.category === "mini",
   );
 
   return (
     <section id="projects" className="py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* Section Header - LARGER TEXT */}
         <div className="text-center mb-16 animate-fadeInUp">
           <h2
-            className={`text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 ${
+            className={`text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 ${
               darkMode ? "text-white" : "text-gray-900"
             }`}
           >
@@ -360,7 +398,7 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
             }`}
           ></div>
           <p
-            className={`mt-6 text-lg max-w-3xl mx-auto ${
+            className={`mt-6 text-xl max-w-3xl mx-auto ${
               darkMode ? "text-gray-300" : "text-gray-600"
             }`}
           >
@@ -369,28 +407,34 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
           </p>
         </div>
 
-        {/* Main Project Section */}
+        {/* Main Projects Section - Grid layout (2 columns side by side) */}
         <div className="mb-16">
           <h3
-            className={`text-2xl font-bold mb-8 flex items-center gap-2 ${
+            className={`text-3xl font-bold mb-8 flex items-center gap-2 ${
               darkMode ? "text-white" : "text-gray-900"
             }`}
           >
             <FiStar className="text-cyan-500" />
-            Main Project
+            Main Projects
           </h3>
 
-          {mainProject && (
-            <div className="animate-fadeInUp">
-              <ProjectCard project={mainProject} />
-            </div>
-          )}
+          <div className="grid md:grid-cols-2 gap-6">
+            {mainProjects.map((project, index) => (
+              <div
+                key={project.id}
+                style={{ animationDelay: `${index * 100}ms` }}
+                className="animate-fadeInUp"
+              >
+                <ProjectCard project={project} />
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Mini Projects Section */}
+        {/* Mini Projects Section - Grid layout */}
         <div>
           <h3
-            className={`text-2xl font-bold mb-8 flex items-center gap-2 ${
+            className={`text-3xl font-bold mb-8 flex items-center gap-2 ${
               darkMode ? "text-white" : "text-gray-900"
             }`}
           >
@@ -411,14 +455,14 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
           </div>
         </div>
 
-        {/* Project Statistics */}
+        {/* Project Statistics - LARGER TEXT */}
         <div
           className={`rounded-xl p-8 mt-16 mb-12 ${
             darkMode ? "bg-gray-800" : "bg-linear-to-r from-cyan-50 to-blue-50"
           }`}
         >
           <h3
-            className={`text-2xl font-bold mb-6 text-center ${
+            className={`text-3xl font-bold mb-6 text-center ${
               darkMode ? "text-white" : "text-gray-900"
             }`}
           >
@@ -431,14 +475,14 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
               }`}
             >
               <div
-                className={`text-3xl font-bold mb-2 ${
+                className={`text-4xl font-bold mb-2 ${
                   darkMode ? "text-cyan-400" : "text-cyan-600"
                 }`}
               >
                 {projects.length}
               </div>
               <p
-                className={`text-sm ${
+                className={`text-base ${
                   darkMode ? "text-gray-400" : "text-gray-600"
                 }`}
               >
@@ -452,14 +496,14 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
               }`}
             >
               <div
-                className={`text-3xl font-bold mb-2 ${
+                className={`text-4xl font-bold mb-2 ${
                   darkMode ? "text-green-400" : "text-green-600"
                 }`}
               >
-                1
+                {mainProjects.length}
               </div>
               <p
-                className={`text-sm ${
+                className={`text-base ${
                   darkMode ? "text-gray-400" : "text-gray-600"
                 }`}
               >
@@ -473,14 +517,14 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
               }`}
             >
               <div
-                className={`text-3xl font-bold mb-2 ${
+                className={`text-4xl font-bold mb-2 ${
                   darkMode ? "text-blue-400" : "text-blue-600"
                 }`}
               >
-                2
+                {miniProjects.length}
               </div>
               <p
-                className={`text-sm ${
+                className={`text-base ${
                   darkMode ? "text-gray-400" : "text-gray-600"
                 }`}
               >
@@ -494,14 +538,14 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
               }`}
             >
               <div
-                className={`text-3xl font-bold mb-2 ${
+                className={`text-4xl font-bold mb-2 ${
                   darkMode ? "text-purple-400" : "text-purple-600"
                 }`}
               >
-                10
+                12+
               </div>
               <p
-                className={`text-sm ${
+                className={`text-base ${
                   darkMode ? "text-gray-400" : "text-gray-600"
                 }`}
               >
@@ -511,126 +555,10 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
           </div>
         </div>
 
-        {/* Project Development Process */}
-        <div
-          className={`rounded-xl p-8 ${
-            darkMode ? "bg-gray-800/50" : "bg-linear-to-r from-gray-50 to-white"
-          }`}
-        >
-          <h3
-            className={`text-2xl font-bold mb-6 text-center ${
-              darkMode ? "text-white" : "text-gray-900"
-            }`}
-          >
-            Development Approach
-          </h3>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <div
-              className={`p-6 rounded-lg ${
-                darkMode ? "bg-gray-900" : "bg-white shadow-sm"
-              }`}
-            >
-              <div
-                className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 ${
-                  darkMode ? "bg-cyan-900/30" : "bg-cyan-100"
-                }`}
-              >
-                <FiUsers
-                  className={`text-xl ${
-                    darkMode ? "text-cyan-400" : "text-cyan-600"
-                  }`}
-                />
-              </div>
-              <h4
-                className={`font-bold mb-2 ${
-                  darkMode ? "text-white" : "text-gray-900"
-                }`}
-              >
-                User-Centric Design
-              </h4>
-              <p
-                className={`text-sm ${
-                  darkMode ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                Focus on solving real user problems with intuitive interfaces
-                and seamless experiences
-              </p>
-            </div>
-
-            <div
-              className={`p-6 rounded-lg ${
-                darkMode ? "bg-gray-900" : "bg-white shadow-sm"
-              }`}
-            >
-              <div
-                className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 ${
-                  darkMode ? "bg-green-900/30" : "bg-green-100"
-                }`}
-              >
-                <FiCode
-                  className={`text-xl ${
-                    darkMode ? "text-green-400" : "text-green-600"
-                  }`}
-                />
-              </div>
-              <h4
-                className={`font-bold mb-2 ${
-                  darkMode ? "text-white" : "text-gray-900"
-                }`}
-              >
-                Clean Architecture
-              </h4>
-              <p
-                className={`text-sm ${
-                  darkMode ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                Modular, scalable code structure following best practices and
-                design patterns
-              </p>
-            </div>
-
-            <div
-              className={`p-6 rounded-lg ${
-                darkMode ? "bg-gray-900" : "bg-white shadow-sm"
-              }`}
-            >
-              <div
-                className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 ${
-                  darkMode ? "bg-blue-900/30" : "bg-blue-100"
-                }`}
-              >
-                <FiSmartphone
-                  className={`text-xl ${
-                    darkMode ? "text-blue-400" : "text-blue-600"
-                  }`}
-                />
-              </div>
-              <h4
-                className={`font-bold mb-2 ${
-                  darkMode ? "text-white" : "text-gray-900"
-                }`}
-              >
-                Responsive & Accessible
-              </h4>
-              <p
-                className={`text-sm ${
-                  darkMode ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                Desktop-first responsive design with a clean and user-friendly
-                interface.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Call to Action */}
+        {/* Call to Action - LARGER TEXT */}
         <div className="text-center mt-16">
           <p
-            className={`text-lg mb-6 ${
+            className={`text-xl mb-6 ${
               darkMode ? "text-gray-300" : "text-gray-700"
             }`}
           >
@@ -640,13 +568,13 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
             href="https://github.com/vishal-coding02"
             target="_blank"
             rel="noopener noreferrer"
-            className={`inline-flex items-center gap-2 px-8 py-3 rounded-lg font-semibold transition-all ${
+            className={`inline-flex items-center gap-2 px-8 py-4 rounded-lg text-lg font-semibold transition-all ${
               darkMode
                 ? "bg-gray-800 hover:bg-gray-700 text-white border border-gray-700"
                 : "bg-gray-900 hover:bg-gray-800 text-white"
             }`}
           >
-            <FiGithub />
+            <FiGithub size={20} />
             View GitHub Profile
           </a>
         </div>
